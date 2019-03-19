@@ -15,6 +15,7 @@ module NavigationHelpers
 
     when /^the home\s?page$/
       '/'
+      
     when /^the new article page$/
       '/admin/content/new'
 
@@ -24,6 +25,16 @@ module NavigationHelpers
     #   when /^(.*)'s profile page$/i
     #     user_profile_path(User.find_by_login($1))
 
+     when /^the categories page$/
+        '/admin/categories/new'
+    
+     when /^the new categories page$/
+       '/admin/categories/new'
+      
+     when /^the edit page for "(.*)"$/
+        category = Category.find_by_name($1)
+        "/admin/categories/edit/#{category.id}"
+  
     else
       begin
         page_name =~ /^the (.*) page$/
