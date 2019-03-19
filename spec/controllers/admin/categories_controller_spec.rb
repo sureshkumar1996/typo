@@ -32,6 +32,10 @@ describe Admin::CategoriesController do
         :attributes => { :id => "category_container" }
     end
   end
+  
+  #describe do
+    
+  #end
 
 
   describe "test_edit" do
@@ -39,6 +43,8 @@ describe Admin::CategoriesController do
       get :edit, :id => Factory(:category).id
     end
 
+    let(:category) { Factory(:category) }
+    
     it 'should render template new' do
       assert_template 'new'
       assert_tag :tag => "table",
@@ -49,6 +55,11 @@ describe Admin::CategoriesController do
       assigns(:category).should_not be_nil
       assert assigns(:category).valid?
       assigns(:categories).should_not be_nil
+    end
+
+    it "assigns a category" do
+      get :edit, :id => category.id
+      expect(assigns(:category)).to eq(category)
     end
   end
 
