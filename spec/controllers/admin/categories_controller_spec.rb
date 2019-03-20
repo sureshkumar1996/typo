@@ -33,9 +33,17 @@ describe Admin::CategoriesController do
     end
   end
   
-  #describe do
+  describe "test_create" do
+    before(:each) do
+      get :new
+    end
     
-  #end
+    it "create a category" do
+      post :new, :category => {:name => "IPL_Teams", :keywords => "", :permalink => "", :description => ""}
+      assert_not_nil Category.find_by_name("IPL_Teams")
+      assert_redirected_to :action => 'new'
+    end
+  end
 
 
   describe "test_edit" do
